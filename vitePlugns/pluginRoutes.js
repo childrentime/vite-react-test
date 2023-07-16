@@ -39,7 +39,7 @@ export default function pluginRoutes() {
       }
     },
 
-    load(id: string) {
+    load(id) {
       // FIXME: remove and add it multiple time, and it causes 504
       console.log('load ???');
       if (id === RESOLVED_ID) {
