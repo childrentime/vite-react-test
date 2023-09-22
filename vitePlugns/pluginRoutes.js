@@ -7,8 +7,8 @@ const RESOLVED_ID= '\0' + CONVENTIONAL_ROUTE_ID;
 const { dirname, resolve } = path.posix;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const routePaths = ['a','b'];
-const generateRoutesCode = () => {
+
+const generateRoutesCode = (routePaths) => {
   return `
 
   ${routePaths
@@ -31,6 +31,8 @@ const generateRoutesCode = () => {
 };
 
 export default function pluginRoutes() {
+
+  let routePaths = [];
   return {
     name: "website:routes",
     resolveId(id) {
@@ -39,11 +41,15 @@ export default function pluginRoutes() {
       }
     },
 
+    configResolved() {
+      routePaths = ['a','b'];
+    },
+
     load(id) {
-      // FIXME: remove and add it multiple time, and it causes 504
+      // FIXME: remove and add it , and it causes 504
       console.log('load ???');
       if (id === RESOLVED_ID) {
-        return generateRoutesCode();
+        return generateRoutesCode(routePaths);
       }
     },
   };
