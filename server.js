@@ -97,7 +97,7 @@ export async function createServer(
 if (!isTest) {
   createServer().then(({ app }) =>
     app.listen(5173, () => {
-      console.log('http://localhost:5173')
+      console.log('http://localhost:5173/a')
     }),
   )
 }
